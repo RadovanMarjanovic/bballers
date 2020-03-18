@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>All events:</h1>
+  <% @events.each do |event| %>
+    <p><%= event.name %></p>
+    <h2>Description</h2>
+    <p><%= event.description %></p>
+  <% end %>
+</div>

@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>List of all courts</h1>
+  <% @courts.each do |court| %>
+    <p><%= court.name %></p>
+    <p><%= court.description %></p>
+    <p><%= court.address %></p>
+    <p><%= court.capacity %></p>
+  <% end %>
+</div>
