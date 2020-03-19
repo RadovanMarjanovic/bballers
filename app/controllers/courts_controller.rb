@@ -1,18 +1,33 @@
 class CourtsController < ApplicationController
+  before_action :set_court, only: [:show, :edit, :update, :destroy]
+
   def index         # GET /courts
-    @courts = Court.all
+    if params[:query].present?
+    sql_query = "name ILIKE :query OR address ILIKE :query"
+    @courts = policy_scope(Court).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @courts = policy_scope(Court).all
+    end
   end
 
   def show          # GET /courts/:id
-    @court = Court.find(params[:id])
   end
 
-  # def new           # GET /courts/new
+  def new           # GET /courts/new
+    @court = Court.new
+    authorize @court
+  end
 
-  # end
+  def create        # POST /courts
+    @court = Court.new(court_params.merge(user_id: current_user.id))
+    authorize @court
 
-  # def create        # POST /courts
-  # end
+    if @court.save
+      redirect_to courts_path
+    else
+      render :new
+    end
+  end
 
   # def edit          # GET /courts/:id/edit
   # end
@@ -22,4 +37,15 @@ class CourtsController < ApplicationController
 
   # def destroy       # DELETE /courts/:id
   # end
+
+  private
+
+  def court_params
+    params.require(:court).permit(:name, :description, :address, :court_type, :capacity)
+  end
+
+  def set_court
+    @court = Court.find(params[:court_id])
+    authorize @court
+  end
 end

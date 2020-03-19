@@ -1,0 +1,7 @@
+<div class="container">
+  <h2><%= @event.name %></h2>
+  <% if policy(@event).edit? %>
+    <%= link_to "Edit", edit_court_event_path([@court, @event]), class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "Join event", class: "btn btn-secondary" %>
+</div>

@@ -5,5 +5,7 @@
     <p><%= court.description %></p>
     <p><%= court.address %></p>
     <p><%= court.capacity %></p>
+    <%=  link_to "Create Event", new_court_event_path(court), class: "btn btn-success"%>
+    <%=  link_to "Check events", court_events_path(court), class: "btn btn-primary"%>
   <% end %>
 </div>
