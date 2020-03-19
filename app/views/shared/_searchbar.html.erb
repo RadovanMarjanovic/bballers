@@ -1,0 +1,8 @@
+<div class="searchbar">
+  <%= form_tag courts_path, method: :get do %>
+    <%= text_field_tag :query,
+        params[:query],
+        placeholder: "Search for courts" %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>

@@ -1,8 +1,9 @@
 <div class="container">
   <h1>All events:</h1>
   <% @events.each do |event| %>
-    <p><%= event.name %></p>
-    <h2>Description</h2>
+    <h3><%= event.name %></h3>
+    <p>Description:</p>
     <p><%= event.description %></p>
+    <%=  link_to "More details", court_event_path(event.court, event), class: "btn btn-primary"%>
   <% end %>
 </div>
