@@ -45,7 +45,7 @@ class CourtsController < ApplicationController
   end
 
   def set_court
-    @court = Court.find(params[:court_id])
+    @court = Court.find(params[:id])
     authorize @court
   end
 end
