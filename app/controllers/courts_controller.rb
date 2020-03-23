@@ -11,6 +11,7 @@ class CourtsController < ApplicationController
   end
 
   def show          # GET /courts/:id
+    @event_user = EventUser.new
   end
 
   def new           # GET /courts/new

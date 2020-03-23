@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :courts do
-    resources :events
+    resources :events do
+      resources :event_users
+    end
   end
 end
