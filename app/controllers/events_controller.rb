@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_court, only: [:show, :new, :create]
+  before_action :set_court, only: [:show, :edit, :update, :new, :create]
 
   def index         # GET /events
     @events = policy_scope(Event).where(court_id: params[:court_id]).order(created_at: :asc)
@@ -20,14 +20,18 @@ class EventsController < ApplicationController
     else
       render :new
     end
-
   end
 
-  # def edit          # GET /events/:id/edit
-  # end
+  def edit          # GET /events/:id/edit
+  end
 
-  # def update        # PATCH /events/:id
-  # end
+  def update        # PATCH /events/:id
+    if @event.update(event_params)
+      redirect_to court_event_path(@event)
+    else
+      render :edit
+    end
+  end
 
   # def destroy       # DELETE /events/:id
   # end
