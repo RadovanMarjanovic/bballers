@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_court, only: [:show, :edit, :update, :new, :create]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index         # GET /events
     @events = policy_scope(Event).where(court_id: params[:court_id]).order(created_at: :asc)
