@@ -7,4 +7,5 @@ class Court < ApplicationRecord
   validates :address, presence: true
   validates :capacity, presence: true, numericality: { only_integer: true }
   validates :court_type, presence: true, inclusion: { in: %w(indoor outdoor) }
+  has_one_attached :photo
 end

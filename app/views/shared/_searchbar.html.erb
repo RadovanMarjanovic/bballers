@@ -2,7 +2,8 @@
   <%= form_tag courts_path, method: :get do %>
     <%= text_field_tag :query,
         params[:query],
-        placeholder: "Search for courts" %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+        placeholder: "Search for courts",
+        class: "search-bar" %>
+    <%= submit_tag "Search", class: "btn btn-danger" %>
   <% end %>
 </div>

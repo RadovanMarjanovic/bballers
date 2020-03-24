@@ -1,5 +1,6 @@
 class CourtsController < ApplicationController
   before_action :set_court, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index         # GET /courts
     if params[:query].present?
@@ -42,7 +43,7 @@ class CourtsController < ApplicationController
   private
 
   def court_params
-    params.require(:court).permit(:name, :description, :address, :court_type, :capacity)
+    params.require(:court).permit(:name, :description, :address, :court_type, :capacity, :photo)
   end
 
   def set_court
