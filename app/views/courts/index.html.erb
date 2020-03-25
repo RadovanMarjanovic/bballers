@@ -1,11 +1,33 @@
 <div class="container">
-  <h3>List of all courts</h3>
-  <% @courts.each do |court| %>
-    <p><%= court.name %></p>
-    <p><%= court.description %></p>
-    <p><%= court.address %></p>
-    <p><%= court.capacity %></p>
-    <%=  link_to "Create Event", new_court_event_path(court), class: "btn btn-success"%>
-    <%=  link_to "Check events", court_events_path(court), class: "btn btn-primary"%>
-  <% end %>
-</div>
+  <h3 class="mt-3">List of all courts</h3>
+  <div class="my-3 d-flex justify-content-center">
+    <%= render "shared/searchbar" %>
+  </div> <!-- END OF SEARCHBAR -->
+  <div class="row">
+    <% @courts.each do |court| %>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <%= link_to court_path(court) do %>
+          <div class="card mb-3" >
+            <% if court.photo.attached? %>
+              <%= cl_image_tag court.photo.key, class: "card-img-top" %>
+            <% else %>
+              <img class="card-img-top" src="https://images.unsplash.com/photo-1523225078415-687408717027?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=745&q=80" alt="Card image cap">
+            <% end %>
+              <div class="card-body">
+                <div class="card-body-details">
+                  <h5 class="card-title"><%= court.name %></h5>
+                  <!-- <p class="card-text"><%= court.description %></p> -->
+                  <p class="card-text">Address: <%= court.address %></p>
+                  <p class="card-text">Capacity: <%= court.capacity %></p>
+                </div>
+                <%=  link_to "Create Event", new_court_event_path(court), class: "btn btn-outline-danger btn-sm" %>
+                <%=  link_to "Check events", court_events_path(court), class: "btn btn-outline-dark btn-sm" %>
+              </div>
+          </div> <!-- END OF CARD -->
+        <% end %>
+      </div> <!-- END OF COL -->
+    <% end %>
+  </div> <!-- END OF ROW -->
+</div> <!-- END OF CONTAINER -->
+
+
