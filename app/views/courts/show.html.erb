@@ -1,5 +1,12 @@
 <div class="container">
-  <h1>Court:</h1>
+  <div class="mt-4">
+    <% if @court.photo.attached? %>
+      <%= cl_image_tag @court.photo.key %>
+    <% else %>
+      <img class="card-img-top" src="https://images.unsplash.com/photo-1523225078415-687408717027?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=745&q=80" alt="Card image cap">
+    <% end %>
+  </div>
+
   <h2><%= @court.name %></h2>
   <h3>Description:</h3>
   <p><%= @court.description %></p>
@@ -7,5 +14,15 @@
   <p><%= @court.address %></p>
   <h3>Capacity:</h3>
   <p><%= @court.capacity %></p>
-  <%= cl_image_tag @court.photo.key, height: 300, width: 400, crop: :fill %>
+  <h3>Events:</h3>
+  <% if @court.events.empty? %>
+    <p>There are no events for this court</p>
+    <%=  link_to "Create Event", new_court_event_path(@court), class: "btn btn-outline-danger btn-sm" %>
+  <% else %>
+    <%=  link_to "Create new event", new_court_event_path(@court), class: "btn btn-outline-danger btn-sm" %>
+    <% @court.events.each do |event| %>
+      <p><%= event.name %></p>
+      <p><%= event.date %></p>
+    <% end %>
+  <% end %>
 </div>

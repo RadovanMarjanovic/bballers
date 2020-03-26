@@ -3,7 +3,8 @@ class PagesController < ApplicationController
 
   def home
     @courts = Court.geocoded
-
+    @event = Event.new
+    @court = Court.new
     @marker = @courts.map do |court|
       {
         lat: court.latitude,

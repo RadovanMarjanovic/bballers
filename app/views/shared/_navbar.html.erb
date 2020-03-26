@@ -12,7 +12,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <%=  link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-item nav-link"%>
+            <%= link_to "Create an event", new_user_session_path, class: "nav-item nav-link"%>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-item nav-link"%>
+            <%= cl_image_tag current_user.photo.key, class: "nav-avatar ml-2" %>
             <!-- <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled/Link4</a> -->
           </div>
         </div>
@@ -33,7 +35,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <%=  link_to "Create An Event", new_user_session_path, class: "nav-item nav-link"%>
+            <%=  link_to "Create an event", new_user_session_path, class: "nav-item nav-link"%>
             <%=  link_to "Sign Up", new_user_registration_path, class: "nav-item nav-link active"%>
             <%=  link_to "Login", new_user_session_path, class: "nav-item nav-link"%>
             <!-- <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled/Link4</a> -->

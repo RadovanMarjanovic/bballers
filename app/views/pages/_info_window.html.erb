@@ -1,2 +1,5 @@
-<h6><%= court.name %></h6>
-<p><%= court.address %></p>
+<%= link_to court_path(court) do %>
+    <h6><%= court.name %></h6>
+    <p><%= court.address %></p>
+<%= link_to "Add event", new_court_event_path(court), class: "btn btn-danger btn-sm" %>
+<% end %>
