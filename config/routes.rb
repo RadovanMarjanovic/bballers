@@ -8,4 +8,8 @@ Rails.application.routes.draw do
       resources :event_users
     end
   end
+
+  resources :dashboards, only: [:show, :edit, :update]
+
+  get '/:username', to: 'pages#profile', as: 'profile'
 end

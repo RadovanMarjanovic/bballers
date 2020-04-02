@@ -40,11 +40,11 @@ courts_attributes = [
 Court.create!(courts_attributes)
 
 photo_1 = URI.open("https://es.web.img2.acsta.net/c_215_290/medias/nmedia/18/35/38/61/19636935.jpg")
-natalie = User.create!(email: "natalie@gmail.com", password: "123456")
+natalie = User.create!(username: "natalie", email: "natalie@gmail.com", password: "123456")
 natalie.photo.attach(io: photo_1, filename: 'nes.jpg', content_type: 'image/jpg')
 
 photo_2 = URI.open("https://static.techspot.com/images2/news/bigimage/2019/03/2019-03-09-image-6.jpg")
-rado = User.create!(email: 'rado@gmail.com', password: '123456')
+rado = User.create!(username: "rado", email: 'rado@gmail.com', password: '123456')
 rado.photo.attach(io: photo_2, filename: 'nes.jpg', content_type: 'image/jpg')
 
 
