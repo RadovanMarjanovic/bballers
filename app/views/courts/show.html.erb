@@ -19,10 +19,14 @@
     <p>There are no events for this court</p>
     <%=  link_to "Create Event", new_court_event_path(@court), class: "btn btn-outline-danger btn-sm" %>
   <% else %>
-    <%=  link_to "Create new event", new_court_event_path(@court), class: "btn btn-outline-danger btn-sm" %>
-    <% @court.events.each do |event| %>
-      <p><%= event.name %></p>
-      <p><%= event.date %></p>
-    <% end %>
+    <%=  link_to "Add new event", new_court_event_path(@court), class: "btn btn-outline-danger btn-sm" %>
+        <% @court.events.each do |event| %>
+          <%= link_to court_event_path(@court, event) do %>
+            <p><%= event.name %></p>
+            <p><%= event.date %></p>
+            <p>Available spots: <%= event.num_of_players %></p>
+            <p>Players joined: <%= event.event_users.count %></p>
+          <% end %>
+        <% end %>
   <% end %>
 </div>

@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   end
 
   def show          # GET /events/:id
+    @user = User.find(@event.user_id)
   end
 
   def new           # GET /events/new
