@@ -6,14 +6,10 @@
     <% end %>
   <% end %>
   <!-- JOIN BUTTON -->
-  <% if @event.event_user_ids.count >= @event.num_of_players %>
-    <div class="alert alert-warning alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <p>Event full</p>
-    </div>
-  <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary", disabled: true %>
+  <% if @event.is_user_registered?(current_user.id) || @event.is_event_full? %>
+    <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary", disabled: true %>
   <% else %>
-  <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary"%>
+    <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary" %>
   <% end %>
   <p>Created by <strong><%= link_to @user.username, profile_path(@user.username) %></strong></p>
 
