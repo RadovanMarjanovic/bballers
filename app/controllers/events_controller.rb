@@ -9,6 +9,8 @@ class EventsController < ApplicationController
 
   def show          # GET /events/:id
     @user = User.find(@event.user_id)
+    @event_user = EventUser.find_by(event_id: params[:id], user_id: current_user.id)
+    authorize @event_user
   end
 
   def new           # GET /events/new
