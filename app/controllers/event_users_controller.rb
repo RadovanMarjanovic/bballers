@@ -12,7 +12,7 @@ class EventUsersController < ApplicationController
     authorize @event_user
     if @event_user.event.event_user_ids.count < @event_user.event.num_of_players
       if @event_user.save
-        redirect_to courts_path
+        redirect_to court_event_path(id: @event_user.event_id)
       else
         render :new
       end
