@@ -1,5 +1,5 @@
 <h1><%= @event.name %></h1>
-<%= form_for [@court, @event], url: court_event_path(court_id: @court.id, event_id: @event.id) do |f| %>
+<%= form_for @event, url: court_event_path(court_id: params[:court_id], event_id: params[:id]) do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control'  %>
