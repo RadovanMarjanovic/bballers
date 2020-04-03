@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_court, only: [:show, :edit, :update, :new, :create]
+  before_action :set_court, only: [:show, :new, :create]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index         # GET /events
@@ -9,9 +9,11 @@ class EventsController < ApplicationController
 
   def show          # GET /events/:id
     @user = User.find(@event.user_id)
-    @event_user = EventUser.find_by(event_id: params[:id], user_id: current_user.id)
-    unless @event_user.nil?
-      authorize @event_user
+    unless current_user.nil?
+      @event_user = EventUser.find_by(event_id: params[:id], user_id: current_user.id)
+      unless @event_user.nil?
+        authorize @event_user
+      end
     end
   end
 
@@ -33,7 +35,7 @@ class EventsController < ApplicationController
 
   def update        # PATCH /events/:id
     if @event.update(event_params)
-      redirect_to court_event_path(@event)
+      redirect_to court_events_path
     else
       render :edit
     end
