@@ -6,8 +6,17 @@
     <% end %>
   <% end %>
   <!-- JOIN BUTTON -->
-  <% if @event.is_user_registered?(current_user.id) || @event.is_event_full? %>
+  <% if  @event.is_event_full? %>
     <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary", disabled: true %>
+  <% elsif @event.is_user_registered?(current_user.id) %>
+    <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary", disabled: true %>
+    <% if policy(@event.event_users).destroy? %>
+
+
+      <%= button_to "Unjoin event", court_event_event_user_path(@court, @event), {action: :destroy, method: :delete} %>
+
+
+    <% end %>
   <% else %>
     <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary" %>
   <% end %>

@@ -16,6 +16,15 @@ const initMapbox = () => {
       style: 'mapbox://styles/pdunleav/cjofefl7u3j3e2sp0ylex3cyb'
     });
 
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+        trackUserLocation: true
+      })
+    );
+
     const markers = JSON.parse(mapElement.dataset.markers);
 
     markers.forEach((marker) => {
