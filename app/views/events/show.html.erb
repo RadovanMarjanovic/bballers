@@ -1,44 +1,44 @@
-<div class="container">
-  <h2><%= @event.name %></h2>
-  <% if current_user %>
-    <% if policy(@event).edit? %>
-      <%= link_to "Edit", edit_court_event_path(@court, @event), class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
-  <!-- JOIN BUTTON -->
+<div class="dark-background">
+  <div class="container">
+    <h2 class="text-center pt-4 mb-2"><%= @event.name %></h2>
+    <p class="created-by text-center">Created by <strong><%= link_to @user.username, profile_path(@user.username) %></strong></p>
+    <p class="text-center my-4 location"><i class="fas fa-map-marker-alt"></i> <span class="ml-3"><%= @event.court.address %></span></p>
+    <div class="d-flex justify-content-around event-info">
+      <p><i class="far fa-calendar-alt"></i> <span class="ml-3"><%= @event.date %></span></p>
+      <p><i class="far fa-clock"></i> <span class="ml-3"><% @event.time == nil ? "00:00" : @event.time.strftime('%H:%M') %></span></p>
+      <p><i class="fas fa-users"></i> <span class="ml-3"><%= @event.event_users.count %> / <%= @event.num_of_players %></span></p>
+    </div>
 
-  <% if current_user %>
-
-    <% if  @event.is_event_full? %>
-
-      <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary", disabled: true %>
-
-    <% elsif @event.is_user_registered?(current_user.id) %>
-
-      <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary", disabled: true %>
-
-        <% if policy(@event_user).destroy? %>
-          <%= button_to "Unjoin event", court_event_event_user_path(@court, @event), {action: :destroy, method: :delete} %>
+    <div class="d-flex justify-content-around">
+      <% if current_user %>
+        <% if  @event.is_event_full? %>
+          <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "large-button text-center disabled-button", disabled: true %>
+        <% elsif @event.is_user_registered?(current_user.id) %>
+          <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "large-button text-center disabled-button", disabled: true %>
+            <% if policy(@event_user).destroy? %>
+              <%= button_to "Unjoin event", court_event_event_user_path(@court, @event), class: "all-buttons white-button large-button text-center", action: :destroy, method: :delete %>
+            <% end %>
+        <% else %>
+          <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "all-buttons pink-button large-button text-center" %>
         <% end %>
+      <% else %>
+        <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "all-buttons pink-button large-button text-center" %>
+      <% end %>
 
-    <% else %>
+      <% if current_user %>
+        <% if policy(@event).edit? %>
+          <%= link_to "Edit", edit_court_event_path(@court, @event), class: "all-buttons white-button large-button text-center" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="players-joined mt-5">
+      <p>Players joined (<%= @event.event_users.count %>):</p>
+      <ul>
+        <% @event.event_users.each do |event_user| %>
+          <li><i class="fas fa-basketball-ball mr-2"></i> <%= link_to event_user.user.username, profile_path(event_user.user.username) %></li>
+        <% end %>
+      </ul>
+    </div>
 
-      <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary" %>
-
-    <% end %>
-
-  <% else %>
-
-    <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "btn btn-primary" %>
-
-  <% end %>
-
-  <p>Created by <strong><%= link_to @user.username, profile_path(@user.username) %></strong></p>
-
-  <p>Players joined (<%= @event.event_users.count %>):</p>
-  <ul>
-    <% @event.event_users.each do |user| %>
-      <li><%= user.user.username %></li>
-    <% end %>
-  </ul>
+  </div> <!-- END OF CONTAINER -->
 </div>

@@ -1,21 +1,21 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
+// .navbar-lewagon {
+//   justify-content: space-between;
+//   background: white;
+// }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+// .navbar-lewagon .navbar-collapse {
+//   flex-grow: 0;
+// }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
+// .navbar-lewagon .navbar-brand img {
+//   width: 40px;
+// }
 .navbar-brand span {
-  color: red;
-  border: 1px solid white;
-  padding: 8px 16px;
-  border-radius: 2px;
+  font-size: 32px;
+  font-weight: bold;
+  i {
+    color: $pink;
+ }
 }
 .nav-avatar {
   width: 40px;
@@ -23,4 +23,7 @@
   border-radius: 50%;
   object-fit:cover;
   border: 1px solid white;
+}
+.navbar {
+  margin: 0 80px;
 }

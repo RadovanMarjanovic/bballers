@@ -4,6 +4,11 @@
         params[:query],
         placeholder: "Search for courts",
         class: "search-bar" %>
-    <%= submit_tag "Search", class: "btn btn-danger" %>
+    <br>
+    <div class="d-flex justify-content-between">
+        <%= submit_tag "Search", class: "btn btn-danger left-button my-3" %>
+        <button type="button" class="btn btn-outline-light right-button my-3">Check map</button>
+    </div>
   <% end %>
+
 </div>

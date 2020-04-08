@@ -1,0 +1,16 @@
+.court-img {
+  width: 50%;
+}
+.court-img img {
+  width: 100%;
+  object-fit: contain;
+}
+.court-description {
+  width: 50%;
+  position: relative;
+}
+.bottom-btn {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

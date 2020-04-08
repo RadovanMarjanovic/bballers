@@ -1,4 +1,37 @@
-
-.card a:hover{
+.card-top a:link {
+  color: black;
+}
+.card-top a:visited {
+  color: black;
+}
+.card-top a:hover {
+  color: red;
   text-decoration: none;
 }
+.card-top a:active {
+  color: black;
+}
+.card-text {
+  color: gray;
+  font-size: 18px;
+  i {
+    color: black;
+  }
+}
+.card-rale {
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(179,179,179,1);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(179,179,179,1);
+  box-shadow: 0px 5px 5px 0px rgba(179,179,179,1);
+  min-height: 170px;
+  img {
+    filter: grayscale(100%);
+    opacity: 0.9;
+  }
+}
+.image-top {
+  background-color: $purple;
+}
+.card-buttons a:link {
+  color: white !important;
+}
+

@@ -1,0 +1,28 @@
+.dark-background {
+  background-color: $dark-late-gray;
+  color: white;
+  min-height: 100vh;
+}
+.players-joined ul a:link, .created-by a:link{
+  color: white;
+}
+.players-joined ul a:visited, .created-by a:visited {
+  color: white;
+}
+.players-joined ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+    a:hover {
+    color: $pink;
+    transition: .5s;
+    text-decoration: none;
+  }
+}
+.event-info i, .location i {
+  color: $pink;
+}
+
+
+
+
