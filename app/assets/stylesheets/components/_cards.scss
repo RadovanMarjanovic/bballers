@@ -24,6 +24,8 @@
   box-shadow: 0px 5px 5px 0px rgba(179,179,179,1);
   min-height: 170px;
   img {
+    object-fit: cover;
+    height: 200px;
     filter: grayscale(100%);
     opacity: 0.9;
   }
