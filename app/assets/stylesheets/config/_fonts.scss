@@ -1,9 +1,10 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Arimo:400,400i,700,700i&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Arimo:400,400i,700,700i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700&display=swap');
 
 // Define fonts for body and headers
-$body-font: 'Arimo', "Helvetica", "sans-serif";
-$headers-font: "Arimo", "Helvetica", "sans-serif";
+$body-font: 'Dosis', "Helvetica", "sans-serif";
+$headers-font: "Dosis", "Helvetica", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

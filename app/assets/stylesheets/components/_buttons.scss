@@ -1,0 +1,56 @@
+.black-button {
+  padding: 10px 18px;
+  background-color: black;
+  color: white;
+}
+.pink-button {
+  padding: 10px 18px;
+  background-color: $pink;
+  color: white;
+}
+.pink-button-sm {
+  padding: 8px 16px;
+  background-color: $pink;
+  color: white;
+}
+.black-button-sm {
+  padding: 8px 16px;
+  background-color: black;
+  color: white;
+}
+.white-button {
+  padding: 10px 18px;
+  background-color: white;
+  color: $pink;
+}
+.white-button-outline {
+  border: 1px solid $pink;
+}
+.large-button {
+  min-width: 150px;
+}
+// .all-buttons:link {
+
+// }
+.all-buttons:visited {
+
+}
+.all-buttons:hover {
+  opacity: .85;
+  text-decoration: none;
+  color: $pink;
+  transition: .5s;
+}
+.white-buttons:hover {
+  color: $pink;
+}
+.disabled-button {
+  padding: 10px 18px;
+  opacity: .7;
+  border: none;
+  :hover {
+    opacity: .7;
+    color: black;
+    transition: .5s;
+  }
+}

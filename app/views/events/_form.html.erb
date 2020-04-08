@@ -1,30 +1,37 @@
-<%= form_for([@court, @event]) do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
+<div class="container">
+  <div class="form-signin mt-5">
+    <%= form_for([@court, @event]) do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_field :description, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date %>
+        <%= f.date_field :date, class: 'form-control timepicker'%>
+      </div>
+
+      <div class="md-form">
+        <%= f.label :time %>
+        <%= f.time_field :time, format: "%H:%M", class: 'form-control timepicker'%>
+      </div>
+
+      <!-- <div class="form-group">
+        <%= f.label :price_cents %>
+        <%= f.text_field :price_cents, class: 'form-control' %>
+      </div> -->
+
+      <div class="form-group">
+        <%= f.label :num_of_players %>
+        <%= f.text_field :num_of_players, class: 'form-control' %>
+      </div>
+
+      <%= f.submit class: 'all-buttons pink-button text-center large-button' %>
+    <% end %>
   </div>
-
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_field :description, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :date %>
-    <%= f.text_field :date, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :price_cents %>
-    <%= f.text_field :price_cents, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :num_of_players %>
-    <%= f.text_field :num_of_players, class: 'form-control' %>
-  </div>
-
-  <%= f.submit class: 'btn btn-primary' %>
-<% end %>
-
-
+</div>

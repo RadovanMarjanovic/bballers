@@ -1,20 +1,28 @@
-<div class="lading-page">
-  <div class="container">
-      <div id="lading-page-text">
-        <h1>BBallers</h1>
-        <h3 class="mb-3">Find the best pickup game near you.</h3>
-        <%= render "shared/searchbar" %>
-      </div>
+<div class="hero">
+  <div id="lading-page-text">
+    <!-- <h1 id="h1-title"><i class="fas fa-basketball-ball"></i> BBallers</h1> -->
+    <h2 class="mb-5">Find the best pickup game near you.</h2>
+    <div class="searchbar">
+      <%= form_tag courts_path, method: :get do %>
+        <%= text_field_tag :query,
+            params[:query],
+            placeholder: "Search for court name or address...",
+            class: "search-bar" %>
+        <br>
+        <div class="d-flex my-3">
+            <%= submit_tag "Search", class: "all-buttons large-button black-button font-weight-bold text-center mr-3" %>
+            <a href="#" class="all-buttons large-button white-button text-center">Check map</a>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
-<div class="cta-btn">
-  <div class="container">
-    <%= link_to "Add court", new_court_path, class: "btn btn-danger" %>
-  </div>
-</div> <!-- END OF CTA BTN -->
+</div> <!-- END OF HERO -->
+
+
+
 <div class="map-display py-5">
   <div class="container">
-    <h3 class="pb-3">Check courts on the map</h3>
+    <h3 class="text-center mb-5">Check courts on the map</h3>
     <div
     id="map"
     style="width: 100%;
@@ -22,6 +30,10 @@
     data-markers="<%= @marker.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
     ></div>
+  </div> <!-- END OF CONTAINER -->
+  <div class="links d-flex justify-content-center my-5">
+    <%= link_to "Add court", new_court_path, class: "all-buttons large-button black-button font-weight-bold text-center mr-5" %>
+    <%= link_to "See all courts", courts_path, class: "all-buttons large-button white-button text-center ml-5" %>
   </div>
 </div> <!-- END OF MAP DISPLAY -->
 

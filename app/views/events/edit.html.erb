@@ -1,31 +1,38 @@
-<h1><%= @event.name %></h1>
-<%= form_for @event, url: court_event_path(court_id: params[:court_id], event_id: params[:id]) do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control'  %>
+<div class="container">
+  <div class="form-signin mt-5">
+    <h3 class="text-center mt-3"><%= @event.name %></h3>
+    <%= form_for @event, url: court_event_path(court_id: params[:court_id], event_id: params[:id]) do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control'  %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_field :description, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date %>
+        <%= f.date_field :date, class: 'form-control timepicker'%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :time %>
+        <%= f.time_field :time, format: "%H:%M", class: 'form-control timepicker'%>
+      </div>
+
+  <!--     <div class="form-group">
+        <%= f.label :price_cents %>
+        <%= f.text_field :price_cents, class: 'form-control' %>
+      </div> -->
+
+      <div class="form-group">
+        <%= f.label :num_of_players %>
+        <%= f.text_field :num_of_players, class: 'form-control' %>
+      </div>
+
+      <%= f.submit "Edit", class: 'all-buttons pink-button text-center large-button' %>
+    <% end %>
   </div>
-
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_field :description, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :date %>
-    <%= f.text_field :date, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :price_cents %>
-    <%= f.text_field :price_cents, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :num_of_players %>
-    <%= f.text_field :num_of_players, class: 'form-control' %>
-  </div>
-
-  <%= f.submit "Edit", class: 'btn btn-primary' %>
-<% end %>
-
-
+</div>

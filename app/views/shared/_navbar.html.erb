@@ -1,9 +1,9 @@
 <% if user_signed_in? %>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white d-flex justify-content-between">
       <div>
         <%= link_to root_path, class: "navbar-brand" do %>
-          <span>BBallers</span>
+          <span><i class="fas fa-basketball-ball"></i> BBallers</span>
         <% end %>
       </div> <!-- END OF LEFT - LOGO DIV -->
       <div>
@@ -12,12 +12,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <%= link_to "Create an event", new_user_session_path, class: "nav-item nav-link"%>
+            <%= link_to "All courts", courts_path, class: "nav-item nav-link" %>
             <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-item nav-link"%>
             <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, class: "nav-avatar ml-2" %>
+              <%= cl_image_tag current_user.photo.key, class: "nav-avatar mx-3" %>
             <% else %>
-              <img class="nav-avatar ml-2" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80">
+              <img class="nav-avatar my-3" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80">
             <% end %>
             <!-- <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled/Link4</a> -->
           </div>
@@ -27,10 +27,10 @@
 
 <% else %>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white d-flex justify-content-between">
       <div>
         <%= link_to root_path, class: "navbar-brand" do %>
-          <span>BBallers</span>
+          <span><i class="fas fa-basketball-ball"></i> BBallers</span>
         <% end %>
       </div> <!-- END OF LEFT - LOGO DIV -->
       <div>
@@ -39,9 +39,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <%=  link_to "Create an event", new_user_session_path, class: "nav-item nav-link"%>
-            <%=  link_to "Sign Up", new_user_registration_path, class: "nav-item nav-link active"%>
+            <%= link_to "All courts", courts_path, class: "nav-item nav-link active" %>
             <%=  link_to "Login", new_user_session_path, class: "nav-item nav-link"%>
+            <%=  link_to "Sign Up", new_user_registration_path, class: "nav-item nav-link"%>
             <!-- <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled/Link4</a> -->
           </div>
         </div>
