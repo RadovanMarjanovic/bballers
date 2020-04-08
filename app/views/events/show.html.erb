@@ -5,7 +5,7 @@
     <p class="text-center my-4 location"><i class="fas fa-map-marker-alt"></i> <span class="ml-3"><%= @event.court.address %></span></p>
     <div class="d-flex justify-content-around event-info">
       <p><i class="far fa-calendar-alt"></i> <span class="ml-3"><%= @event.date %></span></p>
-      <p><i class="far fa-clock"></i> <span class="ml-3"><% @event.time == nil ? "00:00" : @event.time.strftime('%H:%M') %></span></p>
+      <p><i class="far fa-clock"></i> <span class="ml-3"><%= @event.time == nil ? "00:00" : @event.time.strftime('%H:%M') %></span></p>
       <p><i class="fas fa-users"></i> <span class="ml-3"><%= @event.event_users.count %> / <%= @event.num_of_players %></span></p>
     </div>
 
