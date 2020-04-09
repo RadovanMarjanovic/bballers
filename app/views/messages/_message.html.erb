@@ -1,0 +1,30 @@
+<div data-recipient-id="<%= other_user_id %>" class="message-row <%= message.user.id == other_user_id ? 'my-message' : 'other-message' %>">
+  <div class="message">
+    <div class="message--header">
+      <div class="<%= message.user.id == other_user_id ? 'd-flex justify-content-end' : 'd-flex justify-content-start' %>">
+        <% if current_user == message.user %>
+          <div class="message--text">
+            <% message.body.lines.each do |line| %>
+              <p><%= line %></p>
+            <% end %>
+          </div>
+          <%= cl_image_tag current_user.photo.key, class: "avatar ml-2" %>
+        <% else %>
+          <%= cl_image_tag @other_user.photo.key, class: "avatar mr-2" %>
+          <div class="message--text">
+            <% message.body.lines.each do |line| %>
+              <p><%= line %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <span class="message--author">
+        <%= message.user.username %>
+      </span>
+      <span class="message--time">
+        <%= message.message_time %>
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<% @chats.each do |chat| %>
+  <% if current_user == chat.recipient %>
+    <%= link_to chat.sender.username, chat_path(chat) %>
+  <% else %>
+    <%= link_to chat.recipient.username, chat_path(chat) %>
+  <% end %>
+<% end %>
+
+<div class="chat-box">
+
+</div>

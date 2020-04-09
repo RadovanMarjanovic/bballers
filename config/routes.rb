@@ -11,5 +11,11 @@ Rails.application.routes.draw do
 
   resources :dashboards, only: [:show, :edit, :update]
 
-  get '/:username', to: 'pages#profile', as: 'profile'
+  get '/profile/:username', to: 'pages#profile', as: 'profile'
+
+  resources :chats, only: [:index, :show, :create] do
+     resources :messages, only: [:index, :create]
+  end
+
+  mount ActionCable.server => '/cable'
 end

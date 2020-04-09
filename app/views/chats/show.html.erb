@@ -1,0 +1,20 @@
+<div class="reel-cont d-flex mt-5">
+  <div data-current-user-id="<%= current_user.id %>" id="chat-box" style="height: calc(100vh - 130px);">
+    <div class="chat">
+      <div class="messages">
+        <div class="messages--content">
+          <%= render @messages, other_user_id: current_user.id %>
+        </div>
+      </div> <!-- END OF MESSAGES -->
+      <div class="chat--form">
+        <%= form_for [@chat, @message] do |f| %>
+          <div class="message-form">
+            <%= f.text_field :body, placeholder: "Type message", autofocus: true, class: "message-form--input" %>
+            <%= f.hidden_field :chat_id, value: @chat.id %>
+            <%= f.submit "Send", class: "message-form--submit" %>
+          </div>
+        <% end %>
+      </div> <!-- END OF FORM -->
+    </div> <!-- END OF CHAT CONTAINER -->
+  </div>
+</div>

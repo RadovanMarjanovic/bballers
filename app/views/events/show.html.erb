@@ -2,6 +2,12 @@
   <div class="container">
     <h2 class="text-center pt-4 mb-2"><%= @event.name %></h2>
     <p class="created-by text-center">Created by <strong><%= link_to @user.username, profile_path(@user.username) %></strong></p>
+    <% if current_user != @user %>
+      <span class="msg-link"><%= link_to "Message #{@user.username}", chats_path(sender_id: current_user, recipient_id: @user.id), method: :post %><i class="far fa-comment-dots"></i></span>
+    <% end %>
+
+
+
     <p class="text-center my-4 location"><i class="fas fa-map-marker-alt"></i> <span class="ml-3"><%= @event.court.address %></span></p>
     <div class="d-flex justify-content-around event-info">
       <p><i class="far fa-calendar-alt"></i> <span class="ml-3"><%= @event.date %></span></p>
