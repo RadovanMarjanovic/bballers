@@ -26,19 +26,40 @@
     <%= link_to "Create Event", new_court_event_path(@court), class: "all-buttons black-button-sm" %>
   <% else %>
     <div class="row">
-        <% @court.events.each do |event| %>
+        <% @court.events.order(date: :desc).each do |event| %>
+        <% if event.date > Date.today %>
           <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card-rale mb-3">
                 <div class="card-body">
                   <h4 class="card-title"><%= event.name %></h4>
                   <p><i class="far fa-calendar-alt"></i> <span class="card-text mb-2 ml-2"> <%= event.date %></span></p>
                   <p><i class="fas fa-users"></i><span class="card-text ml-2"> <%= event.event_users.count %> / <%= event.num_of_players %></span></p>
-                  <%= link_to "Check details", court_event_path(@court, event), class: "all-buttons text-center black-button btn-block" %>
+                  <%= link_to "Check details", court_event_path(@court, event), class: "all-buttons text-center pink-button btn-block" %>
                 </div>
             </div>
           </div><!--  END OF COL -->
         <% end %>
+      <% end %>
     </div><!--  END OF ROW -->
+
+    <h3 class="text-center my-5">Past events</h3>
+    <div class="row">
+        <% @court.events.order(date: :desc).each do |event| %>
+          <% if event.date < Date.today %>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="card-rale mb-3">
+                  <div class="card-body">
+                    <h4 class="card-title"><%= event.name %></h4>
+                    <p><i class="far fa-calendar-alt"></i> <span class="card-text mb-2 ml-2"> <%= event.date %></span></p>
+                    <p><i class="fas fa-users"></i><span class="card-text ml-2"> <%= event.event_users.count %> / <%= event.num_of_players %></span></p>
+                    <%= link_to "Check details", court_event_path(@court, event), class: "all-buttons text-center black-button btn-block" %>
+                  </div>
+              </div>
+            </div><!--  END OF COL -->
+          <% end %>
+        <% end %>
+    </div><!--  END OF ROW -->
+
   <% end %>
 
 </div>
