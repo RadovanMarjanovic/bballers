@@ -1,2 +1,14 @@
 <h3><%= @user.username %></h3>
 <p><%= @user.email %></p>
+<ul>
+  <% @reviews.each do |review| %>
+    <li>
+      Rating: <%= review.rating %> /
+      Rated by: <%= review.event_user.event.users.find(review.rating_event_user_id).username  %> /
+      Event: <%= review.event_user.event.name %> /
+      Court: <%= review.event_user.event.court.name %>, <%= review.event_user.event.court.address %>
+    </li>
+  <% end %>
+</ul>
+
+
