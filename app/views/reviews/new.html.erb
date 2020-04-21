@@ -1,0 +1,15 @@
+<h3>New review</h3>
+
+<div class="container">
+  <div class="form-signin mt-5">
+    <%= form_for @review, url: court_event_event_user_reviews_path, method: :post do |f| %>
+      <div class="form-group">
+        <%= f.label :rating %>
+        <%= f.number_field :rating, max: 10, class: 'form-control' %>
+      </div>
+
+      <%= f.submit "Submit", class: 'all-buttons pink-button text-center large-button' %>
+    <% end %>
+  </div>
+</div>
+

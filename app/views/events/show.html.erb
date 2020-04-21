@@ -41,7 +41,33 @@
       <p>Players joined (<%= @event.event_users.count %>):</p>
       <ul>
         <% @event.event_users.each do |event_user| %>
-          <li><i class="fas fa-basketball-ball mr-2"></i> <%= link_to event_user.user.username, profile_path(event_user.user.username) %></li>
+
+          <li>id: <%= event_user.id %> --- <%= event_user.user.username %> ---
+
+            <% if !event_user.is_event_user_rated?(event_user.id, current_user.id, event_user.user.id) %>
+
+              <% if current_user.id != event_user.user.id %>
+
+                <%= link_to "Rate #{event_user.user.username}", new_court_event_event_user_review_path(event_id: params[:id], event_user_id: event_user.id) %>
+
+              <% end %>
+
+            <% else %>
+
+              <% event_user.reviews.each do |review| %>
+                <% if review.rated_event_user_id == event_user.user.id && review.rating_event_user_id == current_user.id %>
+                  <%= review.rating %>
+                <% end %>
+              <% end %>
+
+            <% end %>
+          </li>
+
+
+
+
+
+          <!-- <li><i class="fas fa-basketball-ball mr-2"></i> <%= link_to event_user.user.username, profile_path(event_user.user.username) %> <span class="msg-link"><%= link_to "Rate #{event_user.user.username}", new_court_event_event_user_review_path(event_id: params[:id], event_user_id: @event_user.id) %><i class="far fa-comment-dots"></i></span></li> -->
         <% end %>
       </ul>
     </div>
