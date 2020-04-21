@@ -44,29 +44,29 @@
 
           <li>id: <%= event_user.id %> --- <%= event_user.user.username %> ---
 
-            <% if !event_user.is_event_user_rated?(event_user.id, current_user.id, event_user.user.id) %>
+            <% if @event.is_user_registered?(current_user.id) %>
 
-              <% if current_user.id != event_user.user.id %>
+              <% if !event_user.is_event_user_rated?(event_user.id, current_user.id, event_user.user.id) %>
 
-                <%= link_to "Rate #{event_user.user.username}", new_court_event_event_user_review_path(event_id: params[:id], event_user_id: event_user.id) %>
+                <% if current_user.id != event_user.user.id %>
 
-              <% end %>
+                  <%= link_to "Rate #{event_user.user.username}", new_court_event_event_user_review_path(event_id: params[:id], event_user_id: event_user.id) %>
 
-            <% else %>
-
-              <% event_user.reviews.each do |review| %>
-                <% if review.rated_event_user_id == event_user.user.id && review.rating_event_user_id == current_user.id %>
-                  <%= review.rating %>
                 <% end %>
+
+              <% else %>
+
+                <% event_user.reviews.each do |review| %>
+                  <% if review.rated_event_user_id == event_user.user.id && review.rating_event_user_id == current_user.id %>
+                    <%= review.rating %>
+                  <% end %>
+                <% end %>
+
               <% end %>
 
             <% end %>
+
           </li>
-
-
-
-
-
 
         <% end %>
       </ul>
