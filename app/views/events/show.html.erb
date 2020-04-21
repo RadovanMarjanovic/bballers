@@ -17,7 +17,8 @@
 
     <div class="d-flex justify-content-around">
       <% if current_user %>
-        <% if  @event.is_event_full? %>
+
+        <% if @event.is_event_full? || @event.is_past_event? %>
           <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "large-button text-center disabled-button", disabled: true %>
         <% elsif @event.is_user_registered?(current_user.id) %>
           <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "large-button text-center disabled-button", disabled: true %>
@@ -27,12 +28,13 @@
         <% else %>
           <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "all-buttons pink-button large-button text-center" %>
         <% end %>
+
       <% else %>
         <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "all-buttons pink-button large-button text-center" %>
       <% end %>
 
       <% if current_user %>
-        <% if policy(@event).edit? %>
+        <% if policy(@event).edit? && !@event.is_past_event? %>
           <%= link_to "Edit", edit_court_event_path(@court, @event), class: "all-buttons white-button large-button text-center" %>
         <% end %>
       <% end %>
@@ -41,33 +43,23 @@
       <p>Players joined (<%= @event.event_users.count %>):</p>
       <ul>
         <% @event.event_users.each do |event_user| %>
-
           <li>id: <%= event_user.id %> --- <%= event_user.user.username %> ---
-
-            <% if @event.is_user_registered?(current_user.id) %>
-
-              <% if !event_user.is_event_user_rated?(event_user.id, current_user.id, event_user.user.id) %>
-
-                <% if current_user.id != event_user.user.id %>
-
-                  <%= link_to "Rate #{event_user.user.username}", new_court_event_event_user_review_path(event_id: params[:id], event_user_id: event_user.id) %>
-
-                <% end %>
-
-              <% else %>
-
-                <% event_user.reviews.each do |review| %>
-                  <% if review.rated_event_user_id == event_user.user.id && review.rating_event_user_id == current_user.id %>
-                    <%= review.rating %>
+            <% if current_user %>
+              <% if @event.is_user_registered?(current_user.id) %>
+                <% if !event_user.is_event_user_rated?(event_user.id, current_user.id, event_user.user.id) %>
+                  <% if current_user.id != event_user.user.id %>
+                    <%= link_to "Rate #{event_user.user.username}", new_court_event_event_user_review_path(event_id: params[:id], event_user_id: event_user.id) %>
+                  <% end %>
+                <% else %>
+                  <% event_user.reviews.each do |review| %>
+                    <% if review.rated_event_user_id == event_user.user.id && review.rating_event_user_id == current_user.id %>
+                      <%= review.rating %>
+                    <% end %>
                   <% end %>
                 <% end %>
-
               <% end %>
-
             <% end %>
-
           </li>
-
         <% end %>
       </ul>
     </div>

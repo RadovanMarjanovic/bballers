@@ -45,7 +45,7 @@
     <h3 class="text-center my-5">Past events</h3>
     <div class="row">
         <% @court.events.order(date: :desc).each do |event| %>
-          <% if event.date < Date.today %>
+          <% if event.is_past_event? %>
             <div class="col-lg-4 col-md-6 col-sm-12">
               <div class="card-rale mb-3">
                   <div class="card-body">
