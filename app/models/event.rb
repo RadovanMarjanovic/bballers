@@ -10,4 +10,8 @@ class Event < ApplicationRecord
   def is_event_full?
     self.event_user_ids.count == self.num_of_players
   end
+
+  def is_past_event?
+    self.date < Date.today
+  end
 end
