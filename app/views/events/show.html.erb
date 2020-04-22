@@ -44,7 +44,7 @@
       <ul>
         <% @event.event_users.each do |event_user| %>
           <li>id: <%= event_user.id %> --- <%= event_user.user.username %> ---
-            <% if current_user %>
+            <% if current_user && @event.is_past_event?%>
               <% if @event.is_user_registered?(current_user.id) %>
                 <% if !event_user.is_event_user_rated?(event_user.id, current_user.id, event_user.user.id) %>
                   <% if current_user.id != event_user.user.id %>
