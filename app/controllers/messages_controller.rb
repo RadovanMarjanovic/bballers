@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = @chat.messages.new(message_params)
-    authorize @message
+    # authorize @message
     @messages = @chat.messages.order(created_at: :desc)
     if @message.save
       redirect_to chat_messages_path(@chat)
