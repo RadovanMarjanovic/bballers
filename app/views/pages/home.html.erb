@@ -1,26 +1,26 @@
-<div class="hero">
-  <div id="lading-page-text">
-    <!-- <h1 id="h1-title"><i class="fas fa-basketball-ball"></i> BBallers</h1> -->
-    <h2 class="mb-5">Find the best pickup game near you.</h2>
-    <div class="searchbar">
-      <%= form_tag courts_path, method: :get do %>
-        <%= text_field_tag :query,
-            params[:query],
-            placeholder: "Search for court name or address...",
-            class: "search-bar" %>
-        <br>
-        <div class="d-flex my-3">
-            <%= submit_tag "Search", class: "all-buttons large-button black-button font-weight-bold text-center mr-3" %>
-            <a href="#" class="all-buttons large-button white-button text-center">Check map</a>
-        </div>
-      <% end %>
-    </div>
-  </div>
+<div class="hero pt-2 pb-5">
+  <div class="container">
+    <div id="lading-page-text" class="mt-5 mx-3">
+      <h2 class="pt-5">Find the best pickup game near you.</h2>
+      <div class="row mt-5">
+        <div class="col-lg-6 col-sm-12">
+          <%= form_tag courts_path, method: :get do %>
+            <%= text_field_tag :query,
+                params[:query],
+                placeholder: "Search for court name or address...",
+                class: "search-bar" %>
+        </div> <!-- END OF COL -->
+      </div> <!-- END OF ROW -->
+      <div class="d-flex pt-3 pb-5">
+          <%= submit_tag "Search", class: "all-buttons large-button black-button text-center mr-3"%>
+          <a href="#" class="all-buttons large-button white-button text-center scroll-down">Check map</a>
+      </div>
+          <% end %>
+    </div> <!-- END OF LANDING-PAGE-TEXT -->
+  </div> <!-- END OF CONTAINER -->
 </div> <!-- END OF HERO -->
 
-
-
-<div class="map-display py-5">
+<div class="map-display py-5" id="second">
   <div class="container">
     <h3 class="text-center mb-5">Check courts on the map</h3>
     <div
@@ -32,8 +32,67 @@
     ></div>
   </div> <!-- END OF CONTAINER -->
   <div class="links d-flex justify-content-center my-5">
-    <%= link_to "Add court", new_court_path, class: "all-buttons large-button black-button font-weight-bold text-center mr-5" %>
-    <%= link_to "See all courts", courts_path, class: "all-buttons large-button white-button text-center ml-5" %>
+    <%= link_to "Add court", new_court_path, class: "all-buttons large-button black-button text-center mr-5" %>
+    <%= link_to "See all courts", courts_path, class: "all-buttons large-button white-button white-button-outline text-center ml-5" %>
   </div>
 </div> <!-- END OF MAP DISPLAY -->
 
+<script>
+  function smoothScroll(scrollTo, duration) {
+    let scroll = document.querySelector(scrollTo);
+    let scrollPosition = scroll.getBoundingClientRect().top + window.scrollY;
+    let startPosition = window.pageYOffset;
+    let distance = scrollPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+      if(startTime === null) startTime = currentTime;
+      let timeElapsed = currentTime - startTime;
+      let run = ease(timeElapsed,startPosition,distance,duration);
+      window.scrollTo(0,run);
+      if(timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function ease(t, b, c, d) {
+      t /= d;
+      return -c * t*(t-2) + b;
+    };
+
+    requestAnimationFrame(animation)
+  }
+
+  let scrollBtn = document.querySelector('.scroll-down')
+  scrollBtn.addEventListener('click', function() {
+    smoothScroll('#second', 200)
+  })
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->

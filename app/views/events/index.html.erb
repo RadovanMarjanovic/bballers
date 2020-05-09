@@ -1,18 +1,21 @@
 <div class="container">
-  <h3 class="text-center"><%= @court.name %></h3>
+  <h5 class="text-center text-secondary"><%= @court.name %></h3>
   <h3 class="text-center">Events</h3>
 
   <div class="row">
   <% @events.each do |event| %>
-    <% if event.date > Date.today %>
+    <% if !event.is_past_event? %>
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card mb-3">
+        <div class="card-rale mb-3">
           <div class="card-body">
             <h5 class="card-title"><%= event.name %></h5>
             <p class="card-subtitle mb-2"><%= event.description %></h6>
-            <p class="card-text"><i class="far fa-calendar-alt mr-2"></i> <%= event.date %></p>
-            <p class="card-text"><i class="fas fa-users mr-2"></i> <%= event.event_users.count %> / <%= event.num_of_players %></p>
-            <p class="card-text"><i class="far fa-clock mr-2"></i> <%= event.time == nil ? "00:00" : event.time.strftime('%H:%M') %></p>
+            <div class="d-flex justify-content-between">
+              <p class="card-text"><i class="far fa-calendar-alt mr-2"></i> <%= event.date %></p>
+              <p class="card-text"><i class="fas fa-users mr-2"></i> <%= event.event_users.count %> / <%= event.num_of_players %></p>
+              <p class="card-text"><i class="far fa-clock mr-2"></i> <%= event.time == nil ? "00:00" : event.time.strftime('%H:%M') %></p>
+            </div>
+
             <%= link_to "More details", court_event_path(event.court, event), class: "all-buttons pink-button btn-block text-center"%>
             <div class="users-overflow mt-2">
               <% event.event_users.each do |event_user| %>
@@ -32,15 +35,17 @@
 
   <div class="row">
     <% @events.each do |event| %>
-      <% if event.date < Date.today %>
+      <% if event.is_past_event? %>
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="card mb-3">
             <div class="card-body">
               <h5 class="card-title"><%= event.name %></h5>
               <p class="card-subtitle mb-2"><%= event.description %></h6>
-              <p class="card-text"><i class="far fa-calendar-alt mr-2"></i> <%= event.date %></p>
-              <p class="card-text"><i class="fas fa-users mr-2"></i> <%= event.event_users.count %> / <%= event.num_of_players %></p>
-              <p class="card-text"><i class="far fa-clock mr-2"></i> <%= event.time == nil ? "00:00" : event.time.strftime('%H:%M') %></p>
+              <div class="d-flex justify-content-between">
+                <p class="card-text"><i class="far fa-calendar-alt mr-2"></i> <%= event.date %></p>
+                <p class="card-text"><i class="fas fa-users mr-2"></i> <%= event.event_users.count %> / <%= event.num_of_players %></p>
+                <p class="card-text"><i class="far fa-clock mr-2"></i> <%= event.time == nil ? "00:00" : event.time.strftime('%H:%M') %></p>
+              </div>
               <%= link_to "More details", court_event_path(event.court, event), class: "all-buttons black-button btn-block text-center"%>
               <div class="users-overflow mt-2">
                 <% event.event_users.each do |event_user| %>
