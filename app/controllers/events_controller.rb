@@ -24,7 +24,7 @@ class EventsController < ApplicationController
 
   def create        # POST /events
     if @court.events.create(event_params.merge(user_id: current_user.id))
-      redirect_to court_events_path
+      redirect_to court_path(@court)
     else
       render :new
     end

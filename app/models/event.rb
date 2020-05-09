@@ -12,6 +12,6 @@ class Event < ApplicationRecord
   end
 
   def is_past_event?
-    self.date < Date.today
+    self.date < DateTime.now.change(offset: "-0000") # changed offset for calculation
   end
 end

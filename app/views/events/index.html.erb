@@ -4,7 +4,7 @@
 
   <div class="row">
   <% @events.each do |event| %>
-    <% if event.date > Date.today %>
+    <% if !event.is_past_event? %>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card-rale mb-3">
           <div class="card-body">
@@ -35,7 +35,7 @@
 
   <div class="row">
     <% @events.each do |event| %>
-      <% if event.date < Date.today %>
+      <% if event.is_past_event? %>
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="card mb-3">
             <div class="card-body">
