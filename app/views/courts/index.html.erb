@@ -1,16 +1,22 @@
 <div class="container">
   <h3 class="mt-3 text-center">List of all courts</h3>
-  <div class="my-3 d-flex justify-content-center">
-    <div class="searchbar">
-      <%= form_tag courts_path, method: :get do %>
-        <%= text_field_tag :query,
-            params[:query],
-            placeholder: "Search for court name or address...",
-            class: "search-bar-sm" %>
-            <%= submit_tag "Search", class: "all-buttons black-button-sm my-3" %>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-10 ">
+    <%= form_tag courts_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        placeholder: "Search for court name or address...",
+        class: "search-bar" %>
+    </div> <!-- END OF COL -->
+    <div class="col-lg-4 col-md-6 col-sm-2 ">
+      <!-- <%= submit_tag "Search", class: "all-buttons black-button-sm my-3" %> -->
+
+      <%= button_tag(type: "submit", class: "all-buttons black-button my-3") do %>
+          <i class="fas fa-search"></i>
       <% end %>
-    </div> <!-- END OF SEARCHBAR -->
-  </div> <!-- END OF DFELX -->
+    </div> <!-- END OF COL -->
+    <% end %>
+  </div> <!-- END OF ROW -->
   <div class="row">
     <% @courts.each do |court| %>
       <div class="col-lg-4 col-md-6 col-sm-12">
@@ -26,18 +32,17 @@
                     <% end %>
                   </div> <!-- END OF IMAGE TOP -->
 
-                  <div class="card-body p-4">
+                  <div class="card-body p-4 text-center">
                     <h4 class="card-title"><%= court.name %></h4>
-                    <!-- <p class="card-text"><%= court.description %></p> -->
                     <p class="card-text"><i class="fas fa-map-marker-alt"></i> <span class="ml-2"><%= court.address %></span></p>
-                    <p class="card-text"><i class="fas fa-user"></i> <span class="ml-2"><%= court.capacity %></span></p>
+                    <!-- <p class="card-text"><i class="fas fa-user"></i> <span class="ml-2"><%= court.capacity %></span></p> -->
                   </div> <!-- END OF CARD BODY -->
                 <% end %>
               </div> <!-- END OF CARD TOP -->
 
               <div class="card-buttons px-4 pb-4 d-flex justify-content-around ">
-                <%= link_to "Check events", court_events_path(court), class: "all-buttons pink-button-sm" %>
-                <%= link_to "Create Event", new_court_event_path(court), class: "all-buttons black-button-sm" %>
+                <%= link_to "Check events", court_events_path(court), class: "all-buttons pink-button" %>
+                <%= link_to "Create Event", new_court_event_path(court), class: "all-buttons black-button" %>
               </div> <!-- END OF CARD BUTTON -->
 
 

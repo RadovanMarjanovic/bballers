@@ -2,22 +2,14 @@
   padding: 10px 18px;
   background-color: black;
   color: white;
+  border: none;
 }
 .pink-button {
   padding: 10px 18px;
   background-color: $pink;
   color: white;
 }
-.pink-button-sm {
-  padding: 8px 16px;
-  background-color: $pink;
-  color: white;
-}
-.black-button-sm {
-  padding: 8px 16px;
-  background-color: black;
-  color: white;
-}
+
 .white-button {
   padding: 10px 18px;
   background-color: white;
@@ -29,12 +21,7 @@
 .large-button {
   min-width: 150px;
 }
-// .all-buttons:link {
 
-// }
-.all-buttons:visited {
-
-}
 .all-buttons:hover {
   opacity: .85;
   text-decoration: none;
@@ -42,7 +29,7 @@
   transition: .5s;
 }
 .white-buttons:hover {
-  color: $pink;
+  // color: $pink;
 }
 .disabled-button {
   padding: 10px 18px;

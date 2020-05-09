@@ -1,4 +1,4 @@
-<div class="dark-background">
+
   <div class="container">
     <h2 class="text-center pt-4 mb-2"><%= @event.name %></h2>
     <p class="created-by text-center">Created by <strong><%= link_to @user.username, profile_path(@user.username) %></strong></p>
@@ -23,7 +23,7 @@
         <% elsif @event.is_user_registered?(current_user.id) %>
           <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "large-button text-center disabled-button", disabled: true %>
             <% if policy(@event_user).destroy? %>
-              <%= button_to "Unjoin event", court_event_event_user_path(@court, @event), class: "all-buttons white-button large-button text-center", action: :destroy, method: :delete %>
+              <%= button_to "Leave event", court_event_event_user_path(@court, @event), class: "all-buttons white-button large-button text-center", action: :destroy, method: :delete %>
             <% end %>
         <% else %>
           <%= button_to "Join Event", court_event_event_users_path(@court, @event), method: :post, class: "all-buttons pink-button large-button text-center" %>
@@ -41,9 +41,9 @@
     </div>
     <div class="players-joined mt-5">
       <p>Players joined (<%= @event.event_users.count %>):</p>
-      <ul>
         <% @event.event_users.each do |event_user| %>
-          <li>id: <%= event_user.id %> --- <%= event_user.user.username %> ---
+
+          <div class="border-bottom players-list mb-2 p-3"><%= event_user.user.username %> ---
             <% if current_user && @event.is_past_event?%>
               <% if @event.is_user_registered?(current_user.id) %>
                 <% if !event_user.is_event_user_rated?(event_user.id, current_user.id, event_user.user.id) %>
@@ -59,10 +59,10 @@
                 <% end %>
               <% end %>
             <% end %>
-          </li>
+          </div>
         <% end %>
-      </ul>
+
     </div>
 
   </div> <!-- END OF CONTAINER -->
-</div>
+
