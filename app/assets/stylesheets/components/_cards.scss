@@ -29,6 +29,10 @@
     filter: grayscale(100%);
     opacity: 0.9;
   }
+  i {
+    color: $purple;
+    font-size: .9em;
+  }
 }
 .image-top {
   background-color: $purple;
@@ -36,4 +40,3 @@
 .card-buttons a:link {
   color: white !important;
 }
-
