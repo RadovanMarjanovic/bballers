@@ -1,16 +1,16 @@
 .court-img {
-  width: 50%;
+  // width: 50%;
+  // height: 40vh;
+
 }
 .court-img img {
+  margin: 0 auto;
   width: 100%;
   object-fit: contain;
 }
 .court-description {
-  width: 50%;
-  position: relative;
-}
-.bottom-btn {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  i {
+    color: $purple;
+    font-size: .9em;
+  }
 }
