@@ -17,6 +17,5 @@ class PagesController < ApplicationController
   def profile
     @user = User.find_by_username(params[:username])
     @reviews = Review.where(rated_event_user_id: @user.id)
-
   end
 end
