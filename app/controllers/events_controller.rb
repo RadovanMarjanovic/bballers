@@ -3,11 +3,11 @@ class EventsController < ApplicationController
   before_action :set_court, only: [:index, :show, :new, :create]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
-  def index         # GET /events
+  def index
     @events = policy_scope(Event).where(court_id: params[:court_id]).order(date: :desc)
   end
 
-  def show          # GET /events/:id
+  def show
     @user = User.find(@event.user_id)
     unless current_user.nil?
       @event_user = EventUser.find_by(event_id: params[:id], user_id: current_user.id)
@@ -17,12 +17,16 @@ class EventsController < ApplicationController
     end
   end
 
-  def new           # GET /events/new
+  def avg_rating(id)
+    Review.where(rated_event_user_id: id).average(:rating).to_f
+  end
+
+  def new
     @event = Event.new
     authorize @event
   end
 
-  def create        # POST /events
+  def create
     if @court.events.create(event_params.merge(user_id: current_user.id))
       redirect_to court_path(@court)
     else
@@ -30,10 +34,10 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit          # GET /events/:id/edit
+  def edit
   end
 
-  def update        # PATCH /events/:id
+  def update
     if @event.update(event_params)
       redirect_to court_events_path
     else
@@ -41,7 +45,7 @@ class EventsController < ApplicationController
     end
   end
 
-  # def destroy       # DELETE /events/:id
+  # def destroy
   # end
 
   private
